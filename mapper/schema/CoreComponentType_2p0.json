@@ -1,0 +1,634 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Core Component Type Schema Module",
+  "description": "Core Component Type Schema Module.\nThis is a mapping of the UN/CEFACT Core Component Type XML Schema to JSON Schema.\nScheme agency:   UN/CEFACT Scheme version:  2.0 Schema date:   15 Nov 2014\nCopyright (C) UN/CEFACT (2007). All Rights Reserved.\nThis document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this paragraph are included on all such copies and derivative works. However, this document itself may not be modified in any way, such as by removing the copyright notice or references to UN/CEFACT, except as needed for the purpose of developing UN/CEFACT specifications, in which case the procedures for copyrights defined in the UN/CEFACT Intellectual Property Rights document must be followed, or as required to translate it into languages other than English.\nThe limited permissions granted above are perpetual and will not be revoked by UN/CEFACT or its successors or assigns.\n\nThis document and the information contained herein is provided on an \"AS IS\" basis and UN/CEFACT DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.",
+  "id": "urn:un:unece:uncefact:documentation:standard:CoreComponentType:2",
+  "namespaces": {
+    "cct": "urn:un:unece:uncefact:documentation:standard:CoreComponentType:2",
+    "ccts": "urn:un:unece:uncefact:documentation:standard:CoreComponentsTechnicalSpecification:2"
+  },
+  "definitions": {
+    "AmountType": {
+      "id": "UNDT000001",
+      "title": "Amount. Type",
+      "description": "A number of monetary units specified in a currency where the unit of the currency is explicit or implied.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000001",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Amount. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A number of monetary units specified in a currency where the unit of the currency is explicit or implied.",
+        "ccts$PrimaryRepresentationTerm": "Amount",
+        "ccts$PrimitiveType": "decimal"
+      },
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "@currencyID": {
+          "type": "string",
+          "description": "The currency of the amount.",
+          "annotation": {
+            "ccts$Name": "Amount. Currency. Identifier",
+            "ccts$Definition": "The currency of the amount.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@currencyCodeListVersionID": {
+          "type": "string",
+          "description": "The VersionID of the UN/ECE Rec9 code list.",
+          "annotation": {
+            "ccts$Name": "Amount Currency. Code List Version. Identifier",
+            "ccts$Definition": "The VersionID of the UN/ECE Rec9 code list.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "amount"
+      ]
+    },
+    "BinaryObjectType": {
+      "id": "UNDT000002",
+      "title": "Binary Object. Type",
+      "description": "A set of finite-length sequences of binary octets.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000002",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Binary Object. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A set of finite-length sequences of binary octets.",
+        "ccts$PrimaryRepresentationTerm": "Binary Object",
+        "ccts$PrimitiveType": "binary"
+      },
+      "type": "object",
+      "properties": {
+        "binaryObject": {
+          "description": "The base64 encoded binary content. The defined pattern is not a complete description of base64 but simply a means to indicate some degree of validity as base64 is not a standard supported format in JSON Schema draft 04",
+          "type": "string",
+          "format": "base64",
+          "pattern": "^(?:[A-Za-z0-9+/]{4}\\n?)*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+        },
+        "@format": {
+          "type": "string",
+          "description": "The format of the binary content.",
+          "annotation": {
+            "ccts$Name": "Binary Object. Format. Text",
+            "ccts$Definition": "The format of the binary content.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@mimeCode": {
+          "type": "string",
+          "description": "The mime type of the binary object.",
+          "annotation": {
+            "ccts$Name": "Binary Object. Mime. Code",
+            "ccts$Definition": "The mime type of the binary object.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@encodingCode": {
+          "type": "string",
+          "description": "Specifies the decoding algorithm of the binary object.",
+          "annotation": {
+            "ccts$Name": "Binary Object. Encoding. Code",
+            "ccts$Definition": "Specifies the decoding algorithm of the binary object.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@characterSetCode": {
+          "type": "string",
+          "description": "The character set of the binary object if the mime type is text.",
+          "annotation": {
+            "ccts$Name": "Binary Object. Character Set. Code",
+            "ccts$Definition": "The character set of the binary object if the mime type is text.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Uniform Resource Identifier that identifies where the binary object is located.",
+          "annotation": {
+            "ccts$Name": "Binary Object. Uniform Resource. Identifier",
+            "ccts$Definition": "The Uniform Resource Identifier that identifies where the binary object is located.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@fileName": {
+          "type": "string",
+          "description": "The filename of the binary object.",
+          "annotation": {
+            "ccts$Name": "Binary Object. File. Name",
+            "ccts$Definition": "The filename of the binary object.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "binaryObject"
+      ]
+    },
+    "CodeType": {
+      "id": "UNDT000003",
+      "title": "Code. Type",
+      "description": "A character string (letters, figures, or symbols) that for brevity and/or languange independence may be used to represent or replace a definitive value or text of an attribute together with relevant supplementary information.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000003",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Code. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A character string (letters, figures, or symbols) that for brevity and/or languange independence may be used to represent or replace a definitive value or text of an attribute together with relevant supplementary information.",
+        "ccts$PrimaryRepresentationTerm": "Code",
+        "ccts$PrimitiveType": "string",
+        "ccts$UsageRule": "Should not be used if the character string identifies an instance of an object class or an object in the real world, in which case the Identifier. Type should be used."
+      },
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "@listID": {
+          "type": "string",
+          "description": "The identification of a list of codes.",
+          "annotation": {
+            "ccts$Name": "Code List. Identifier",
+            "ccts$Definition": "The identification of a list of codes.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listAgencyID": {
+          "type": "string",
+          "description": "An agency that maintains one or more lists of codes.",
+          "annotation": {
+            "ccts$Name": "Code List. Agency. Identifier",
+            "ccts$Definition": "An agency that maintains one or more lists of codes.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listAgencyName": {
+          "type": "string",
+          "description": "The name of the agency that maintains the list of codes.",
+          "annotation": {
+            "ccts$Name": "Code List. Agency Name. Text",
+            "ccts$Definition": "The name of the agency that maintains the list of codes.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listName": {
+          "type": "string",
+          "description": "The name of a list of codes.",
+          "annotation": {
+            "ccts$Name": "Code List. Name. Text",
+            "ccts$Definition": "The name of a list of codes.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listVersionID": {
+          "type": "string",
+          "description": "The version of the list of codes.",
+          "annotation": {
+            "ccts$Name": "Code List. Version. Identifier",
+            "ccts$Definition": "The version of the list of codes.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@name": {
+          "type": "string",
+          "description": "The textual equivalent of the code content component.",
+          "annotation": {
+            "ccts$Name": "Code. Name. Text",
+            "ccts$Definition": "The textual equivalent of the code content component.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@languageID": {
+          "type": "string",
+          "description": "The identifier of the language used in the code name.",
+          "annotation": {
+            "ccts$Name": "Language. Identifier",
+            "ccts$Definition": "The identifier of the language used in the code name.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listURI": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Uniform Resource Identifier that identifies where the code list is located.",
+          "annotation": {
+            "ccts$Name": "Code List. Uniform Resource. Identifier",
+            "ccts$Definition": "The Uniform Resource Identifier that identifies where the code list is located.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@listSchemeURI": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Uniform Resource Identifier that identifies where the code list scheme is located.",
+          "annotation": {
+            "ccts$Name": "Code List Scheme. Uniform Resource. Identifier",
+            "ccts$Definition": "The Uniform Resource Identifier that identifies where the code list scheme is located.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "code"
+      ]
+    },
+    "DateTimeType": {
+      "id": "UNDT000004",
+      "title": "Date Time. Type",
+      "description": "A character string (letters, figures, or symbols) that for brevity and/or languange independence may be used to represent or replace a definitive value or text of an attribute together with relevant supplementary information.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000004",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Date Time. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A particular point in the progression of time together with the relevant supplementary information.",
+        "ccts$PrimaryRepresentationTerm": "Date Time",
+        "ccts$PrimitiveType": "string"
+      },
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "type": "string"
+        },
+        "@format": {
+          "type": "string",
+          "description": "The format of the date time content",
+          "annotation": {
+            "ccts$Name": "Date Time. Format. Text",
+            "ccts$Definition": "The format of the date time content",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "dateTime"
+      ]
+    },
+    "IDType": {
+      "id": "UNDT000005",
+      "title": "Identifier. Type",
+      "description": "A character string to identify and distinguish uniquely, one instance of an object in an identification scheme from all other objects in the same scheme together with relevant supplementary information.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000005",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Identifier. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A character string to identify and distinguish uniquely, one instance of an object in an identification scheme from all other objects in the same scheme together with relevant supplementary information.",
+        "ccts$PrimaryRepresentationTerm": "Identifier",
+        "ccts$PrimitiveType": "string"
+      },
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "@schemeID": {
+          "type": "string",
+          "description": "The identification of the identification scheme.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Identifier",
+            "ccts$Definition": "The identification of the identification scheme.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeName": {
+          "type": "string",
+          "description": "The name of the identification scheme.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Name. Text",
+            "ccts$Definition": "The name of the identification scheme.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeAgencyID": {
+          "type": "string",
+          "description": "The identification of the agency that maintains the identification scheme.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Agency. Identifier",
+            "ccts$Definition": "The identification of the agency that maintains the identification scheme.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeAgencyName": {
+          "type": "string",
+          "description": "The name of the agency that maintains the identification scheme.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Agency Name. Text",
+            "ccts$Definition": "The name of the agency that maintains the identification scheme.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeVersionID": {
+          "type": "string",
+          "description": "The version of the identification scheme.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Version. Identifier",
+            "ccts$Definition": "The version of the identification scheme.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeDataURI": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Uniform Resource Identifier that identifies where the identification scheme data is located.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme Data. Uniform Resource. Identifier",
+            "ccts$Definition": "The Uniform Resource Identifier that identifies where the identification scheme data is located.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@schemeURI": {
+          "type": "string",
+          "format": "uri",
+          "description": "The Uniform Resource Identifier that identifies where the identification scheme is located.",
+          "annotation": {
+            "ccts$Name": "Identification Scheme. Uniform Resource. Identifier",
+            "ccts$Definition": "The Uniform Resource Identifier that identifies where the identification scheme is located.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "IndicatorType": {
+      "id": "UNDT000006",
+      "title": "Indicator. Type",
+      "description": "A list of two mutually exclusive Boolean values that express the only possible states of a Property.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000006",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Indicator. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A list of two mutually exclusive Boolean values that express the only possible states of a Property.",
+        "ccts$PrimaryRepresentationTerm": "Indicator",
+        "ccts$PrimitiveType": "string"
+      },
+      "type": "object",
+      "properties": {
+        "indicator": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "@format": {
+          "type": "string",
+          "enum": [
+            "numeric",
+            "text",
+            "binary"
+          ],
+          "description": "Whether the indicator is numeric, textual or binary. It is preferred that an actual 'boolean' or 'integer' is used over a string with this value differentiating between them.",
+          "annotation": {
+            "ccts$Name": "Indicator. Format. Text",
+            "ccts$Definition": "Whether the indicator is numeric, textual or binary.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "indicator"
+      ]
+    },
+    "MeasureType": {
+      "id": "UNDT000007",
+      "title": "Measure. Type",
+      "description": "A numeric value determined by measuring an object along with the specified unit of measure.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000007",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Measure. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A numeric value determined by measuring an object along with the specified unit of measure.",
+        "ccts$PrimaryRepresentationTerm": "Measure",
+        "ccts$PrimitiveType": "decimal"
+      },
+      "type": "object",
+      "properties": {
+        "measure": {
+          "type": "number"
+        },
+        "@unitCode": {
+          "type": "string",
+          "description": "The type of unit of measure.",
+          "annotation": {
+            "ccts$Name": "Measure. Unit. Code",
+            "ccts$Definition": "The type of unit of measure.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@unitCodeListVersionID": {
+          "type": "string",
+          "description": "The version of the measure unit code list.",
+          "annotation": {
+            "ccts$Name": "Measure Unit. Code List Version. Identifier",
+            "ccts$Definition": "The version of the measure unit code list.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "measure"
+      ]
+    },
+    "NumericType": {
+      "id": "UNDT000008",
+      "title": "Numeric. Type",
+      "description": "Numeric information that is assigned or is determined by calculation, counting, or sequencing. It does not require a unit of quantity or unit of measure.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000008",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Numeric. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "Numeric information that is assigned or is determined by calculation, counting, or sequencing. It does not require a unit of quantity or unit of measure.",
+        "ccts$PrimaryRepresentationTerm": "Numeric",
+        "ccts$PrimitiveType": "string"
+      },
+      "type": "object",
+      "properties": {
+        "numeric": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "@format": {
+          "type": "string",
+          "enum": [
+            "integer",
+            "decimal",
+            "real",
+            "percentage"
+          ],
+          "description": "Whether the number is an integer, decimal, real number or percentage. May still be used when a a value of type 'number' is used to calrify between integer, real, percentage. A value of type 'string' should be used to preserve decimal values.",
+          "annotation": {
+            "ccts$Name": "Numeric. Format. Text",
+            "ccts$Definition": "Whether the number is an integer, decimal, real number or percentage.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "numeric"
+      ]
+    },
+    "QuantityType": {
+      "id": "UNDT000009",
+      "title": "Quantity. Type",
+      "description": "A counted number of non-monetary units possibly including fractions.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000009",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Quantity. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A counted number of non-monetary units possibly including fractions.",
+        "ccts$PrimaryRepresentationTerm": "Quantity",
+        "ccts$PrimitiveType": "decimal"
+      },
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "number"
+        },
+        "@unitCode": {
+          "type": "string",
+          "description": "The unit of the quantity",
+          "annotation": {
+            "ccts$Name": "Quantity. Unit. Code",
+            "ccts$Definition": "The unit of the quantity",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@unitCodeListID": {
+          "type": "string",
+          "description": "The quantity unit code list.",
+          "annotation": {
+            "ccts$Name": "Quantity Unit. Code List. Identifier",
+            "ccts$Definition": "The quantity unit code list.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@unitCodeListAgencyID": {
+          "type": "string",
+          "description": "The identification of the agency that maintains the quantity unit code list",
+          "annotation": {
+            "ccts$Name": "Quantity Unit. Code List Agency. Identifier",
+            "ccts$Definition": "The identification of the agency that maintains the quantity unit code list",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@unitCodeListAgencyName": {
+          "type": "string",
+          "description": "The name of the agency which maintains the quantity unit code list.",
+          "annotation": {
+            "ccts$Name": "Quantity Unit. Code List Agency. Name",
+            "ccts$Definition": "The name of the agency which maintains the quantity unit code list.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "quantity"
+      ]
+    },
+    "TextType": {
+      "id": "UNDT000010",
+      "title": "Text. Type",
+      "description": "A character string (i.e. a finite set of characters) generally in the form of words of a language.",
+      "annotation": {
+        "ccts$UniqueID": "UNDT000010",
+        "ccts$Acronym": "CCT",
+        "ccts$DictionaryEntryName": "Text. Type",
+        "ccts$Version": "2.01",
+        "ccts$Definition": "A character string (i.e. a finite set of characters) generally in the form of words of a language.",
+        "ccts$PrimaryRepresentationTerm": "Text",
+        "ccts$PrimitiveType": "string"
+      },
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "@languageID": {
+          "type": "string",
+          "description": "The identifier of the language used in the content component.",
+          "annotation": {
+            "ccts$Name": "Language. Identifier",
+            "ccts$Definition": "The identifier of the language used in the content component.",
+            "ccts$PrimitiveType": "string"
+          }
+        },
+        "@languageLocaleID": {
+          "type": "string",
+          "description": "The identification of the locale of the language.",
+          "annotation": {
+            "ccts$Name": "Language Locale. Identifier",
+            "ccts$Definition": "The identification of the locale of the language.",
+            "ccts$PrimitiveType": "string"
+          }
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  },
+  "type": "object",
+  "patternProperties": {
+    "^[^$].*": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/AmountType"
+        },
+        {
+          "$ref": "#/definitions/BinaryObjectType"
+        },
+        {
+          "$ref": "#/definitions/CodeType"
+        },
+        {
+          "$ref": "#/definitions/DateTimeType"
+        },
+        {
+          "$ref": "#/definitions/IDType"
+        },
+        {
+          "$ref": "#/definitions/IndicatorType"
+        },
+        {
+          "$ref": "#/definitions/MeasureType"
+        },
+        {
+          "$ref": "#/definitions/NumericType"
+        },
+        {
+          "$ref": "#/definitions/QuantityType"
+        },
+        {
+          "$ref": "#/definitions/TextType"
+        }
+      ]
+    }
+  }
+}

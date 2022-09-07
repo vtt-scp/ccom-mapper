@@ -1,0 +1,53 @@
+# CCOM types
+
+from typing import Optional
+
+from dataclasses import dataclass
+
+from mapper.types.helpers import ExcludeNone, Typed
+from mapper.types.core_component import *
+
+
+@dataclass(kw_only=True)
+class Entity(ExcludeNone):
+    UUID: str
+
+
+@dataclass(kw_only=True)
+class Nameable(ExcludeNone):
+    shortNames: list[TextType] | None = None
+
+
+@dataclass
+class UnitOfMeasure(Entity, Typed):
+    pass
+
+
+@dataclass(kw_only=True)
+class Measure(ExcludeNone):
+    value: int | float
+    unitOfMeasure: UnitOfMeasure | None = None
+
+
+@dataclass
+class BinaryObject:
+    value: str
+
+
+@dataclass(kw_only=True)
+class ValueContent(ExcludeNone):
+    measure: Measure | None = None
+    binaryObject: BinaryObject | None = None
+
+
+@dataclass
+class SingleDataMeasurement(Entity, Nameable, Typed, ExcludeNone):
+    recorded: UTCDateTime
+    data: ValueContent
+    measurementLocation: Optional["MeasurementLocation"] = None
+
+
+@dataclass
+class MeasurementLocation(Entity, Nameable, Typed, ExcludeNone):
+    measurements: list[SingleDataMeasurement] | None = None
+    defaultUnitOfMeasure: UnitOfMeasure | None = None

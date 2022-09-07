@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "ccom-mapper"
+version = "0.1.0"
+description = ""
+authors = ["Jani Hietala <jani.hietala@vtt.fi>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dataclasses-json = "^0.5.7"
+jsonschema = "^4.5.1"
+pytz = "^2022.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+pycodestyle = "^2.8.0"
+pylint = "^2.13.8"
+pytest = "^7.1.2"
+mypy = "^0.950"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

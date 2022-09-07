@@ -1,0 +1,50 @@
+{
+    "$schema": "../schema/CCOM.json",
+    "CCOMData": {
+        "@ccomVersion": "4.1.0-draft",
+        "entities": [
+            {
+                "@@type": "SingleDataMeasurement",
+                "UUID": "00000000-0000-0000-0000-000000000002",
+                "shortNames": [
+                    {
+                        "text": "Testy Measure"
+                    }
+                ],
+                "measurementLocation": {
+                    "UUID": "00000000-0000-0000-0000-000000000001"
+                },
+                "recorded": {
+                    "@format": "RFC3339",
+                    "dateTime": "2021-03-08T13:30:00.123Z"
+                },
+                "data": {
+                    "measure": {
+                        "value": 1.123
+                    }
+                }
+            },
+            {
+                "@@type": "SingleDataMeasurement",
+                "UUID": "00000000-0000-0000-0000-000000000002",
+                "shortNames": [
+                    {
+                        "text": "Testy Measure"
+                    }
+                ],
+                "measurementLocation": {
+                    "UUID": "00000000-0000-0000-0000-000000000001"
+                },
+                "recorded": {
+                    "@format": "RFC3339",
+                    "dateTime": "2021-03-08T13:30:00.123Z"
+                },
+                "data": {
+                    "binaryObject": {
+                        "value": "asdsadsadsad"
+                    }
+                }
+            }
+        ]
+    }
+}

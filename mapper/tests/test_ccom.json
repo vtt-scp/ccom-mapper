@@ -1,0 +1,49 @@
+{
+    "$schema": "../schema/CCOM.json",
+    "CCOMData": {
+        "@ccomVersion": "4.1.0-draft",
+        "entities": [
+            {
+                "@@type": "Asset",
+                "UUID": "00000000-0000-0000-0000-000000000001",
+                "shortName": "Bicycle",
+                "type": {
+                    "UUID": "81661803-b73d-46d1-85d5-742a585fb5fa"
+                }
+            },
+            {
+                "@@type": "MeasurementLocation",
+                "UUID": "00000000-0000-0000-0000-000000000002",
+                "shortName": "Heartrate",
+                "type": {
+                    "UUID": "00000000-0000-0000-0000-000000000001"
+                },
+                "asset": {
+                    "@@type": "Asset",
+                    "UUID": "00000000-0000-0000-0000-000000000001"
+                },
+                "defaultUnitOfMeasure": {
+                    "shortName": "Cycles Per Minute (CPM)",
+                    "UUID": "a9aee6da-6d10-4ed5-9820-2c5624c0756a"
+                }
+            },
+            {
+                "@@type": "SingleDataMeasurement",
+                "UUID": "00000000-0000-0000-0000-000000000002",
+                "measurementLocation": {
+                    "@@type": "MeasurementLocation",
+                    "UUID": "00000000-0000-0000-0000-000000000002"
+                },
+                "recorded": {
+                    "dateTime": "2021-03-08T13:30:00.123Z"
+                },
+                "data": {
+                    "measure": {
+                        "@@type": "Measure",
+                        "value": 60
+                    }
+                }
+            }
+        ]
+    }
+}
