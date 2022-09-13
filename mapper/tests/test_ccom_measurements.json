@@ -12,7 +12,20 @@
                     }
                 ],
                 "measurementLocation": {
-                    "UUID": "00000000-0000-0000-0000-000000000001"
+                    "UUID": "00000000-0000-0000-0000-000000000001",
+                    "shortNames": [
+                        {
+                            "text": "Testy Location"
+                        }
+                    ],
+                    "defaultUnitOfMeasure": {
+                        "UUID": "00000000-0000-0000-0000-000000000005",
+                        "shortNames": [
+                            {
+                                "text": "tst"
+                            }
+                        ]
+                    }
                 },
                 "recorded": {
                     "@format": "RFC3339",
@@ -33,7 +46,20 @@
                     }
                 ],
                 "measurementLocation": {
-                    "UUID": "00000000-0000-0000-0000-000000000001"
+                    "UUID": "00000000-0000-0000-0000-000000000001",
+                    "shortNames": [
+                        {
+                            "text": "Testy Location"
+                        }
+                    ],
+                    "defaultUnitOfMeasure": {
+                        "UUID": "00000000-0000-0000-0000-000000000005",
+                        "shortNames": [
+                            {
+                                "text": "tst"
+                            }
+                        ]
+                    }
                 },
                 "recorded": {
                     "@format": "RFC3339",
