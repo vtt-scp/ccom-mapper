@@ -19,7 +19,7 @@ class Nameable(ExcludeNone):
 
 
 @dataclass
-class UnitOfMeasure(Entity, Typed):
+class UnitOfMeasure(Entity, Nameable, Typed):
     pass
 
 
