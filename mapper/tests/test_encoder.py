@@ -4,6 +4,7 @@ import json
 import pytest
 
 from mapper import encoder, decoder, validator
+from mapper.types.types import MeasurementLocation
 import utils
 
 
@@ -15,8 +16,8 @@ TEST_CCOM_JSON_FILE = os.path.join(
 @pytest.fixture(scope="session")
 def ccom_parsed():
     with open(TEST_CCOM_JSON_FILE) as ccom_json:
-        ccom_parsed = json.load(ccom_json, object_hook=decoder.decode_ccom)
-    return ccom_parsed
+        ccom_object = json.load(ccom_json)
+    return decoder.ccom(ccom_object)
 
 
 # Test CCOM message encoding
@@ -24,7 +25,7 @@ def ccom_parsed():
 
 @pytest.fixture(scope="session")
 def ccom_encoded_json(ccom_parsed):
-    return encoder.ccom(ccom_parsed)
+    return json.dumps(encoder.ccom(ccom_parsed))
 
 
 @pytest.fixture(scope="session")
@@ -63,7 +64,10 @@ def test_ccom_type_of_entities(ccom_parsed, ccom_encoded_dict):
 
 @pytest.fixture(scope="session")
 def iot_encoded_json(ccom_parsed):
-    return encoder.iot_ticket(ccom_parsed)
+    single_measurements = ccom_parsed
+    measurement_location = single_measurements[0].measurementLocation
+    measurement_location.measurements = single_measurements
+    return json.dumps(encoder.iot_ticket(measurement_location))
 
 
 @pytest.fixture(scope="session")
@@ -84,5 +88,4 @@ def test_iot_type_of_entities(ccom_parsed, iot_encoded_dict):
     for original, encoded in zip(ccom_parsed, iot_encoded_dict):
         value = (original.data.measure or original.data.binaryObject).value
         assert value == encoded["v"]
-        assert original.recorded.dateTime == utils.unix_to_date_string(encoded["ts"])
-        assert original.measurementLocation.UUID == encoded["id"]
+        assert original.recorded.dateTime == utils.unix_to_utc_rfc3339(encoded["ts"])
