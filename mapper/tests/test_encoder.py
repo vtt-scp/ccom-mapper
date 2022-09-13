@@ -24,7 +24,7 @@ def ccom_parsed():
 
 @pytest.fixture(scope="session")
 def ccom_encoded_json(ccom_parsed):
-    return encoder.encode_ccom(ccom_parsed)
+    return encoder.ccom(ccom_parsed)
 
 
 @pytest.fixture(scope="session")
@@ -63,7 +63,7 @@ def test_ccom_type_of_entities(ccom_parsed, ccom_encoded_dict):
 
 @pytest.fixture(scope="session")
 def iot_encoded_json(ccom_parsed):
-    return encoder.encode_iot(ccom_parsed)
+    return encoder.iot_ticket(ccom_parsed)
 
 
 @pytest.fixture(scope="session")

@@ -1,12 +1,10 @@
 import json
-from enum import Enum
-from typing import Union, List
 
 from mapper import types
 import utils
 
 
-def encode_ccom(ccom_objects: Union[types.Entity, List[types.Entity]]) -> str:
+def ccom(ccom_objects: types.Entity | list[types.Entity]) -> str:
 
     if not isinstance(ccom_objects, list):
         ccom_objects = [ccom_objects]
@@ -17,31 +15,21 @@ def encode_ccom(ccom_objects: Union[types.Entity, List[types.Entity]]) -> str:
     )
 
 
-def encode_iot(ccom_objects: Union[types.Entity, List[types.Entity]]) -> str:
+def iot_ticket(
+    ccom_objects: types.SingleDataMeasurement | list[types.SingleDataMeasurement],
+) -> str:
 
     if not isinstance(ccom_objects, list):
         ccom_objects = [ccom_objects]
 
     entities = [
         {
-            "id": ccom_object.measurementLocation.UUID,
+            "id": getattr(ccom_object.measurementLocation, "UUID"),
             "ts": utils.date_string_to_unix(ccom_object.recorded.dateTime),
-            "v": (ccom_object.data.measure or ccom_object.data.binaryObject).value,
+            "v": getattr(
+                (ccom_object.data.measure or ccom_object.data.binaryObject), "value"
+            ),
         }
         for ccom_object in ccom_objects
-        if isinstance(ccom_object, types.SingleDataMeasurement)
     ]
     return json.dumps(entities)
-
-
-class Encoder(Enum):
-    CCOM = encode_ccom
-    IOT_TICKET = encode_iot
-
-
-def encode(encoder: Encoder, ccom_objects: Union[types.Entity, List[types.Entity]]):
-
-    if not isinstance(ccom_objects, list):
-        ccom_objects = [ccom_objects]
-
-    return encoder(ccom_objects)
