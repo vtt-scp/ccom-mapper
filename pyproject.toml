@@ -3,6 +3,12 @@ name = "ccom-mapper"
 version = "0.1.0"
 description = "Library for mapping data to CCOM messages and vice versa"
 authors = ["Jani Hietala <jani.hietala@vtt.fi>"]
+readme = "README.md"
+keywords = ["ccom", "json", "dataclass"]
+packages = [
+    {include = "mapper"},
+    {include = "utils.py"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
