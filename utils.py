@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timezone
-from typing import Any, NoReturn
+from typing import Any
 
 
 def utc_rfc3339_to_datetime(date: str) -> datetime:
