@@ -6,7 +6,7 @@ authors = ["Jani Hietala <jani.hietala@vtt.fi>"]
 readme = "README.md"
 keywords = ["ccom", "json", "dataclass"]
 packages = [
-    {include = "mapper"},
+    {include = "ccom"},
     {include = "utils.py"}
 ]
 
