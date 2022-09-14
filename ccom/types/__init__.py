@@ -1,7 +1,7 @@
 import inspect
 
-from mapper.types import types
-from mapper.types.types import *
+from ccom.types import types
+from ccom.types.types import *
 
 CCOM_VERSION = "4.1.0-draft"
 

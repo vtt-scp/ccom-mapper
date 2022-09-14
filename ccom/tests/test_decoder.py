@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from mapper import types, decoder, validator
+from ccom import types, decoder, validator
 import utils
 
 

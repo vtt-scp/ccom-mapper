@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 from dataclasses_json import config
 
-from mapper.types.helpers import ExcludeNone
+from ccom.types.helpers import ExcludeNone
 
 
 @dataclass

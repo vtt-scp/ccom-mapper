@@ -4,8 +4,8 @@ from typing import Optional
 
 from dataclasses import dataclass
 
-from mapper.types.helpers import ExcludeNone, Typed
-from mapper.types.core_component import *
+from ccom.types.helpers import ExcludeNone, Typed
+from ccom.types.core_component import *
 
 
 @dataclass(kw_only=True)

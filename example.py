@@ -1,7 +1,7 @@
 import json
 
-from mapper import decoder
-from mapper import encoder
+from ccom import decoder
+from ccom import encoder
 
 # ccom_object = json.load(ccom_json, object_hook=decoder.decode_ccom)
 

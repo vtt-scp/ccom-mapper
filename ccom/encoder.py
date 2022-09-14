@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from mapper import types
+from ccom import types
 import utils
 
 

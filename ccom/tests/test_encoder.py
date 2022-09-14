@@ -3,8 +3,8 @@ import json
 
 import pytest
 
-from mapper import encoder, decoder, validator
-from mapper.types.types import MeasurementLocation
+from ccom import encoder, decoder, validator
+from ccom.types.types import MeasurementLocation
 import utils
 
 
