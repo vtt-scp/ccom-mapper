@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "ccom-mapper"
 version = "0.1.0"
-description = ""
+description = "Library for mapping data to CCOM messages and vice versa"
 authors = ["Jani Hietala <jani.hietala@vtt.fi>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 dataclasses-json = "^0.5.7"
 jsonschema = "^4.5.1"
-pytz = "^2022.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
