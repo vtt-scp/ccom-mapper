@@ -4,7 +4,6 @@ import json
 import pytest
 
 from ccom import encoder, decoder, validator
-from ccom.types.types import MeasurementLocation
 import utils
 
 
@@ -24,14 +23,13 @@ def ccom_parsed():
 
 
 @pytest.fixture(scope="session")
-def ccom_encoded_json(ccom_parsed):
-    return json.dumps(encoder.ccom(ccom_parsed))
+def ccom_encoded_dict(ccom_parsed):
+    return encoder.ccom(ccom_parsed)
 
 
 @pytest.fixture(scope="session")
-def ccom_encoded_dict(ccom_encoded_json):
-    print(json.loads(ccom_encoded_json))
-    return json.loads(ccom_encoded_json)
+def ccom_encoded_json(ccom_encoded_dict):
+    return json.dumps(ccom_encoded_dict)
 
 
 def test_ccom_validate_encoded(ccom_encoded_dict):
