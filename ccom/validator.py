@@ -1,7 +1,7 @@
 import os
 import json
 
-import jsonschema
+import jsonschema  # type: ignore[import]
 
 CCOM_SCHEMA_PATH = os.path.join(
     os.path.abspath(os.path.dirname(__file__)), "schema/CCOM.json"

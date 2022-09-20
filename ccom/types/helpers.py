@@ -1,14 +1,22 @@
+# Helper classes for other Types to inherit
+
 from dataclasses import dataclass, field
 
 from dataclasses_json import DataClassJsonMixin, config
 
-# Helper classes for other Types to inherit
+
+def if_none(x: str, *_) -> bool:
+    """Check if given first argument is None"""
+    # This function exists because lambda didn't work nicely with mypy in the case below
+    return x is None
 
 
 @dataclass
 class ExcludeNone(DataClassJsonMixin):
     # Exclude "None" values from generated JSON and dict objects
-    dataclass_json_config = config(exclude=lambda x: x is None)["dataclasses_json"]
+    dataclass_json_config = config(exclude=if_none)[  # type: ignore[assignment]
+        "dataclasses_json"
+    ]
 
 
 @dataclass
