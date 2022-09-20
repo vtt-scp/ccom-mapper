@@ -45,6 +45,11 @@ Run tests with:
 ```
 pytest
 ```
+Search for type errors with:
+```
+mypy ccom
+```
+
 ### Decoder/encoder development
 Create new decoders to  and encoders to:
 - [ccom/decoder.py](ccom/decoder.py)
