@@ -1,22 +1,38 @@
 import json
+from typing import cast
 
-from ccom import decoder
-from ccom import encoder
+from ccom import decoder, encoder, manipulator
+from ccom import types
 
-# ccom_object = json.load(ccom_json, object_hook=decoder.decode_ccom)
-
-with open("./mapper/tests/test_ccom_measurements.json") as ccom_file:
+with open("./ccom/tests/test_ccom_measurements.json") as ccom_file:
     ccom_dict = json.load(ccom_file)
-ccom_object = decoder.ccom(ccom_dict)
-# print(ccom_object)
 
-ccom_json = json.dumps(encoder.ccom(ccom_object), indent=4)
-# print(ccom_json)
-# partner_json = encoder.encode_iot(ccom_object)
-#
-# ccom_json = encoder.encode(encoder.Encoder.CCOM, ccom_object)
+# Decode to CCOM entites as Python dataclasses
+ccom_entities = decoder.ccom(ccom_dict)
 
-iot_message = {
+# Cast entities to the expected CCOM type
+ccom_measurements = cast(list[types.SingleDataMeasurement], ccom_entities)
+print("Decoded measurements:")
+for measurement in ccom_measurements:
+    print(measurement.recorded, measurement.data)
+print("")
+
+# Encode measurements back to CCOM and JSON
+ccom_json = json.dumps(encoder.ccom(ccom_entities), indent=4)
+print("CCOM JSON message:", ccom_json, sep="\n", end="\n\n")
+
+# Sort the measurements by measurement locations
+measurement_locations = manipulator.sort_measurements_by_locations(ccom_measurements)
+
+# Convert the same measurement locations to another format supported by partner system
+print("CCOM message encoded to partner messages:")
+for location in measurement_locations:
+    partner_json = json.dumps(encoder.iot_ticket(measurement_locations[0]), indent=4)
+    print(location.UUID, partner_json, sep="\n")
+print("")
+
+# Example partner system message
+partner_message = {
     "datanodeReads": [
         {
             "name": "Latitude",
@@ -36,12 +52,24 @@ iot_message = {
         },
     ]
 }
+print(
+    "Original partner message:",
+    json.dumps(partner_message, indent=4),
+    sep="\n",
+    end="\n\n",
+)
 
-ccom_from_iot_object = decoder.iot_ticket(iot_message)
-# print(ccom_from_iot_object)
-ccom_json = json.dumps(encoder.ccom(ccom_from_iot_object), indent=4)
-print(ccom_json)
-iot_json = json.dumps(encoder.iot_ticket(ccom_from_iot_object[0]), indent=4)
-print(iot_json)
-iot_json = json.dumps(encoder.iot_ticket(ccom_from_iot_object[-1]), indent=4)
-print(iot_json)
+# Decode to CCOM measurement locations
+ccom_measurement_locations = decoder.iot_ticket(partner_message)
+
+# Encode to CCOM message and JSON
+ccom_json = json.dumps(encoder.ccom(ccom_measurement_locations), indent=4)
+print("Partner message encoded to a CCOM JSON message:", ccom_json, sep="\n")
+
+# Encode measurement locations back to partner messages
+original_message = {
+    "datanodeReads": [
+        json.dumps(encoder.iot_ticket(location))
+        for location in ccom_measurement_locations
+    ]
+}
