@@ -28,6 +28,6 @@ def validate(ccom_object: dict) -> None:
 
 
 if __name__ == "__main__":
-    with open("ccom_example.json") as ccom_file:
+    with open("./ccom/tests/test_ccom_measurements.json") as ccom_file:
         ccom_object = json.load(ccom_file)
     validate(ccom_object)
