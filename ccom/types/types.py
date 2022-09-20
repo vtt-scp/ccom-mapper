@@ -1,7 +1,5 @@
 # CCOM types
 
-from typing import Optional
-
 from dataclasses import dataclass
 
 from ccom.types.helpers import ExcludeNone, Typed
@@ -41,13 +39,13 @@ class ValueContent(ExcludeNone):
 
 
 @dataclass
-class SingleDataMeasurement(Entity, Nameable, Typed, ExcludeNone):
-    recorded: UTCDateTime
-    data: ValueContent
-    measurementLocation: Optional["MeasurementLocation"] = None
+class MeasurementLocation(Entity, Nameable, Typed, ExcludeNone):
+    measurements: list["SingleDataMeasurement"] | None = None
+    defaultUnitOfMeasure: UnitOfMeasure | None = None
 
 
 @dataclass
-class MeasurementLocation(Entity, Nameable, Typed, ExcludeNone):
-    measurements: list[SingleDataMeasurement] | None = None
-    defaultUnitOfMeasure: UnitOfMeasure | None = None
+class SingleDataMeasurement(Entity, Nameable, Typed, ExcludeNone):
+    recorded: UTCDateTime
+    data: ValueContent
+    measurementLocation: MeasurementLocation | None = None
