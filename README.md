@@ -59,7 +59,10 @@ More of the CCOM data model can be supported by building the dataclasses found i
 - [ccom/types/types.py](ccom/types/types.py)
 - [ccom/types/core_component.py](ccom/types/core_component.py).
 
-Classes from [ccom/types/helpers.py](ccom/types/helpers.py) are inherited in CCOM type dataclasses for features such as excluding None values from encoded JSON documents and to add `@@type` field to specific types (Python variable names cannot start with an `@`). 
+#### Inheritable helpers
+Classes from [ccom/types/helpers.py](ccom/types/helpers.py) are inherited in CCOM types for features such as:
+- Exclude None values from encoded dicts/JSON.
+- Add `@@type` field to specific types (Python variable names cannot start with an `@`). 
 
 ### Build Python package
 Portable Python package can be built with:
