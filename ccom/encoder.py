@@ -15,7 +15,7 @@ def iot_ticket(
     measurement_location: types.MeasurementLocation,
 ) -> list[dict]:
     """Encode CCOM MeasurementLocation to IoT-Ticket REST API message"""
-    print(measurement_location)
+
     name = utils.require_attribute(measurement_location, "shortNames")[0].text
     unit = None
     if uom := getattr(measurement_location, "defaultUnitOfMeasure"):
