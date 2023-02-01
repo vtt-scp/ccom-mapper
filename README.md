@@ -10,7 +10,7 @@ Library for validating and converting CCOM messages to other formats, and vice v
 ## Quickstart
 Install the python library from GitHub repository
 ```
-pip install git+ssh://git@github.com:VTT-OM/ccom-mapper.git
+pip install git+ssh://git@github.com:vtt-scp/ccom-mapper.git
 ```
 Basic decoding and encoding are used as follows:
 ```python
